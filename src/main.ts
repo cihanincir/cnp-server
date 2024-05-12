@@ -7,13 +7,13 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
 import { createServer } from 'http';
 import { SocketService } from './Socket';
+import { ChatRoom } from './Socket/Rooms/Chat';
 
 dotenv.config({ path: ENV_PATH });
 const PORT = Number(process.env.PORT);
 
 async function bootstrap() {
 
- 
   const app = express();
 
   const nestApp = await NestFactory.create(
@@ -22,7 +22,7 @@ async function bootstrap() {
     { logger: false }
   );
 
-  
+
   nestApp.enableShutdownHooks();
   nestApp.enableCors();
   nestApp.useGlobalPipes(new ValidationPipe());
@@ -34,10 +34,11 @@ async function bootstrap() {
   socketService.createServer(httpServer);
 
   // Define rooms here
+  socketService.defineRoom("chat", ChatRoom);
 
   await socketService.listen(PORT);
   console.log(`Application running [PORT:${PORT}]`);
-
+  
 }
 
 bootstrap();

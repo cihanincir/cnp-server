@@ -13,6 +13,9 @@ export class Messages extends Model {
     userId: number;
 
     @Column(DataType.TEXT)
+    username: string;
+
+    @Column(DataType.TEXT)
     message: string;
 
 }

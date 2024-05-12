@@ -21,7 +21,7 @@ export class UserService {
         // Check username exist
         const usernameCount = await Users.count({ where: { username: body.username } });
         if (usernameCount > 0) {
-            throw new BadRequestException(`The user ${body.username} is already registered.`);
+            throw new BadRequestException(`User ${body.username} is already registered.`);
         }
 
         await Users.create({ ...body });
@@ -42,8 +42,8 @@ export class UserService {
         }
 
         const token = await this.signToken(user.userId);
-        return { token };
-        
+        return { token, userId: user.userId };
+
     }
 
 }
