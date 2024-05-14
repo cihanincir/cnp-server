@@ -22,7 +22,6 @@ async function bootstrap() {
     { logger: false }
   );
 
-
   nestApp.enableShutdownHooks();
   nestApp.enableCors();
   nestApp.useGlobalPipes(new ValidationPipe());
@@ -36,6 +35,7 @@ async function bootstrap() {
   // Define rooms here
   socketService.defineRoom("chat", ChatRoom);
 
+  // Listen socket
   await socketService.listen(PORT);
   console.log(`Application running [PORT:${PORT}]`);
   

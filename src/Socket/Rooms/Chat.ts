@@ -1,6 +1,5 @@
 import { UnauthorizedException } from "@nestjs/common";
 import { Client, ClientArray, Room } from "colyseus";
-import EventEmitter from "events";
 import { Messages } from "src/Database/Models/Messages.model";
 import { Users } from "src/Database/Models/User.model";
 
