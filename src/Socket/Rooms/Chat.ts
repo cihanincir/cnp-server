@@ -23,11 +23,11 @@ export class ChatRoom extends Room {
         })
     }
 
-    onJoin(client: Client<this["clients"] extends ClientArray<infer U, any> ? U : never, this["clients"] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: this["clients"] extends ClientArray<infer _, infer U> ? U : never): void | Promise<any> {
+    onJoin(client: Client): void | Promise<any> {
         this.broadcast("status:connected", this.clients.length);
     }
 
-    onLeave(client: Client<this["clients"] extends ClientArray<infer U, any> ? U : never, this["clients"] extends ClientArray<infer _, infer U> ? U : never>, consented?: boolean): void | Promise<any> {
+    onLeave(client: Client): void | Promise<any> {
         this.broadcast("status:connected", this.clients.length);
     }
 
